@@ -45,13 +45,19 @@ bool scanContraseña() {
 
 int main(void) {
     scanf("%i", &cantContraseñas);
+    bool seguras[cantContraseñas];
 
-    while (!feof(stdin))
+    for (int i = 0; i < cantContraseñas; i++)
     {
-        if(scanContraseña()) {
-            printf("CONTRASENA SEGURA\n");
+        seguras[i] = scanContraseña();
+    }
+
+    for (int i = 0; i < cantContraseñas; i++)
+    {
+        if (seguras[i]) {
+            printf("CONTRASEÑA SEGURA\n");
         } else {
-            printf("CONTRASENA NO SEGURA\n");
+            printf("CONTRASEÑA NO SEGURA\n");
         }
     }
 }
