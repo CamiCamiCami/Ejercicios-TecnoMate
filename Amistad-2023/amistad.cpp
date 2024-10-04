@@ -1,6 +1,7 @@
 #include <iostream>
 #include <math.h>
 #include <string.h>
+#include <ctype.h>
 
 const int MAX_POS = 6;
 int largox;
@@ -13,7 +14,7 @@ int ToInt(char* number, int largo) {
     }
     return n;
 }
-
+ 
 int Reformatear(char* number) {
     const int end = MAX_POS - 1;
     int digitos = strlen(number) - 1;
@@ -34,22 +35,40 @@ void Next(char* number, int* posiciones) {
     *posiciones = *posiciones > i ? *posiciones : i;
 }
 
+void asegurarProximo(char c) {
+    int in = getc(stdin);
+    if (in != c) {
+        printf("NO");
+        exit(0);
+    }
+}
+
 int main(int argc, char *argv[]) {
     scanf("%i", &largox);
 
-
     char esperado[MAX_POS];
-    int i = 0;
+    int largo = 0;
     getc(stdin);
-    for (char c = (char)getc(stdin); c != ' '; c = (char)getc(stdin), i++) {
-        esperado[i] = c;
+
+    for (char c = (char)getc(stdin); c != ' '; c = (char)getc(stdin), largo++) {
+        esperado[largo] = c;
     }
-    esperado[i] = '\0';
+    esperado[largo] = '\0';
+
 
     printf("%s\n", esperado);
     int digitos = Reformatear(esperado);
     int desde = MAX_POS - 1 - (digitos + 1);
-    printf("%i\n%i\n%i\n%s\n", digitos, i, desde, esperado);
-    Next(esperado, &desde);
+    printf("%i\n%i\n%i\n%s\n", digitos, largo, desde, esperado);
+    int pasosPorDar = largo - atoi(esperado);
+
+    for (int i = 0; i < pasosPorDar; i++) {
+        Next(esperado, &desde);
+        for (int j=desde; esperado[j]; j++) {
+            asegurarProximo(esperado[j]);
+        }
+        asegurarProximo(' ');
+    }
+
     printf("%i\n%s\n", desde, esperado);
 }
