@@ -28,4 +28,6 @@ int main(void) {
         printf("%li\n", resultados[i]);
     }
     return 0;
+
+    fprintf(stdout, "hola");
 }
