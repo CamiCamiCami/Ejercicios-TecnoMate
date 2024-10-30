@@ -4,12 +4,6 @@
 
 int profundidad = 0;
 void quicksort(int* lista, int largo) {
-    profundidad++;
-    printf("%i: ", profundidad);
-    for (int i = 0; i < largo; i++) {
-        printf("%i ", lista[i]);
-    }
-    printf("\n");
     if (largo < 2) {
         return;
     }
@@ -35,10 +29,10 @@ void quicksort(int* lista, int largo) {
         lista[m_largo + 1 + i] = aux_mayores[i]; 
     }
 
+    free(aux_mayores);
+
     quicksort(lista, m_largo);
-    profundidad--;
     quicksort((lista + m_largo + 1), M_largo);
-    profundidad--;
 }
 
 int main(void) {
