@@ -9,7 +9,6 @@ int main1(void) {
     return 0;
 }
 
-#include <stdio.h>
 #include <stdlib.h>
 
 char* quicksort(char* lista, int largo) {
@@ -143,7 +142,7 @@ int main(void) {
         fprintf(f, ", %i", kaprekar(i));
     }
     fprintf(f, "}\n");
-    
+
     fclose(f);
     return 0;
 }
